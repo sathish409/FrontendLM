@@ -12,6 +12,7 @@ import Book from './pages/book/Book.js';
 import Student from './pages/student/Student.js'
 import BurrowHistory from './pages/burrow-history/BurrowHistory';
 import MyProfile from './pages/my-profile/MyProfile.js';
+import { AdminPrivateRouter, PrivateRouter } from './components/private-router/PrivateRouter.js';
 function App() {
   return (
     <div className="">
@@ -23,12 +24,33 @@ function App() {
 
     <Route path='/signup' element={<SignUp/>}/>
     {/* private router */}
-    <Route path='/admin_signup' element={<AdminSignUp/>}/>
-    <Route path='/dashboard' element={<Dashboard/>}/>
-    <Route path='/books' element={<Book/>}/>
-    <Route path='/students' element={<Student/>}/>
-    <Route path='/barrow-history' element={<BurrowHistory/>}/>
-    <Route path='/my-profile' element={<MyProfile/>}/>
+  
+    <Route path='/admin_signup' element={
+   
+        <AdminSignUp/>
+
+      }/>
+    <Route path='/dashboard'    element={
+        <PrivateRouter>
+         <Dashboard/>
+        </PrivateRouter>
+     }/>
+    <Route path='/books' element={ 
+      <AdminPrivateRouter>
+        <Book/>
+        </AdminPrivateRouter>}/>
+    <Route path='/students' element={
+      <AdminPrivateRouter>
+        <Student/>
+        </AdminPrivateRouter>}/>
+    <Route path='/barrow-history' element={
+      <AdminPrivateRouter>
+        <BurrowHistory/>
+        </AdminPrivateRouter>}/>
+    <Route path='/my-profile' element={
+      <PrivateRouter>
+        <MyProfile/>
+        </PrivateRouter>}/>
     
 
 
