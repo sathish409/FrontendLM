@@ -4,9 +4,9 @@ import MainLayout from '../../components/layout/MainLayout'
 import { CustomInput } from '../../components/custom_input/CustomInput'
 import { toast } from 'react-toastify'
 import { loginUser } from '../../helpers/axiosHelper'
-import { getUserAction } from './userAction.js'
+import { autoLogin, getUserAction } from './userAction.js'
 import {useDispatch, useSelector} from "react-redux"
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 // import { useNavigate } from 'react-router-dom'
 const LogIn = () => {
   const dispatch= useDispatch()
@@ -14,14 +14,18 @@ const LogIn = () => {
   const passwordRef= useRef("")
 
  const navigate=useNavigate()
+ const location = useLocation()
+ console.log(location)
+ const fromLocation= location?.state?.from?.location?.pathname || "/dashboard"
 
 const {user}= useSelector((state)=> state.adminInfo)
 
   useEffect(()=>{
     //redirect to dashboard
-user?._id && navigate("/dashboard")
+user?._id && navigate(fromLocation)
+  dispatch(autoLogin())
 
-  },[user?._id, navigate])
+  },[user?._id, navigate, dispatch, fromLocation])
 
 const handleOnSubmit=async(e)=>{
   e.preventDefault()

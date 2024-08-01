@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { CustomInput } from '../../components/custom_input/CustomInput'
 import { postAdminUser } from '../../helpers/axiosHelper'
 import {toast} from 'react-toastify';
+import { useSelector } from 'react-redux';
 const initialState={
   fname:"",
   lname:"",
@@ -40,7 +41,7 @@ const AdminSignUp = () => {
 
   }
 
-
+console.log(form)
   const inputs=[
     {
    label: "First Name",
@@ -84,7 +85,8 @@ const AdminSignUp = () => {
    },
 
   ]
-  return (
+  const {user}= useSelector((state)=>state.adminInfo)
+  return user?.role === "admin" ?  (
     <div className="bg-dark text-light p-3">
     <Form onSubmit={handleOnSubmit} className='form-center border shadow-lg p-2 mt-5'>
       <h2>Creating New Admin</h2>
@@ -100,7 +102,7 @@ const AdminSignUp = () => {
     
     </div>
    
-  )
+  ) : ( <h1>You are not authorised to admin page</h1> )
 }
 
 export default AdminSignUp

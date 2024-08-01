@@ -1,8 +1,18 @@
+import { Button , Form} from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
+import { useSelector } from 'react-redux';
 
 export const BookTable=()=> {
+  const {books}= useSelector((state)=> state.bookInfo)
   return (
-    <Table striped bordered hover>
+    <div className="">
+      <p className="d-flex justify-content-between">
+        <label htmlFor=""> 10 Books Found!</label>
+        <div>
+        <Form.Control type="text" placeholder='search book by name' />
+        </div>
+      </p>
+  <Table striped bordered hover>
       <thead>
         <tr>
           <th>#</th>
@@ -14,25 +24,25 @@ export const BookTable=()=> {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td> <img src="  " alt=""/></td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {books.map(({thumbnail, name, author, publishYear,isbn, description}, i)=>
+         <tr key={i}>
+         <td>{i+1}</td>
+         <td> <img src={thumbnail} alt="" width={100}/></td>
+         <td>
+          <h4>{name}</h4>
+          <p>
+            {author} . {publishYear}
+          </p>
+         </td>
+         <td>
+          {description}
+         </td>
+         <td><Button variant='warning'>Edit</Button></td>
+       </tr>)}
       </tbody>
     </Table>
+    </div>
+  
   );
 }
 

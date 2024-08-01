@@ -13,7 +13,19 @@ import Student from './pages/student/Student.js'
 import BurrowHistory from './pages/burrow-history/BurrowHistory';
 import MyProfile from './pages/my-profile/MyProfile.js';
 import { AdminPrivateRouter, PrivateRouter } from './components/private-router/PrivateRouter.js';
+import MyBook from './pages/my-books/MyBook.js';
+import NewBook from './pages/book/NewBook.js';
+import { useEffect } from 'react';
+import { getAllBookAction } from './pages/book/BookAction.js';
+import { useDispatch } from 'react-redux';
+
+
 function App() {
+const dispatch= useDispatch()
+  useEffect(()=> {
+    dispatch(getAllBookAction())
+  },[])
+
   return (
     <div className="">
    <Routes>
@@ -26,8 +38,10 @@ function App() {
     {/* private router */}
   
     <Route path='/admin_signup' element={
-   
-        <AdminSignUp/>
+   <AdminPrivateRouter>
+      <AdminSignUp/>
+   </AdminPrivateRouter>
+      
 
       }/>
     <Route path='/dashboard'    element={
@@ -35,22 +49,34 @@ function App() {
          <Dashboard/>
         </PrivateRouter>
      }/>
+
+<Route path='/my-books'  element={
+        <PrivateRouter>
+         <MyBook/>
+        </PrivateRouter>
+     }/>
+         <Route path='/my-profile' element={
+      <PrivateRouter>
+        <MyProfile/>
+        </PrivateRouter>}/>
+
     <Route path='/books' element={ 
       <AdminPrivateRouter>
         <Book/>
         </AdminPrivateRouter>}/>
+        <Route path='/new-book' element={ 
+      <AdminPrivateRouter>
+        <NewBook/>
+        </AdminPrivateRouter>}/>
     <Route path='/students' element={
-      <AdminPrivateRouter>
-        <Student/>
-        </AdminPrivateRouter>}/>
-    <Route path='/barrow-history' element={
-      <AdminPrivateRouter>
-        <BurrowHistory/>
-        </AdminPrivateRouter>}/>
-    <Route path='/my-profile' element={
       <PrivateRouter>
-        <MyProfile/>
+        <Student/>
         </PrivateRouter>}/>
+    <Route path='/barrow-history' element={
+      <PrivateRouter>
+        <BurrowHistory/>
+        </PrivateRouter>}/>
+
     
 
 

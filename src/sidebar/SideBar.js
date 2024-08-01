@@ -33,7 +33,7 @@ const SideBar = () => {
             }
             
             <li>
-                <Link className='nav-link d-flex align-items-center gap-2' to="/barrow-history"> <TbArrowAutofitDown />My Books</Link>
+                <Link className='nav-link d-flex align-items-center gap-2' to="/my-books"> <TbArrowAutofitDown />My Books</Link>
             </li>
        
             <li>
