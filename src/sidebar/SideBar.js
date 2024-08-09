@@ -7,7 +7,7 @@ import { TbArrowAutofitDown } from "react-icons/tb";
 import { CgProfile } from "react-icons/cg";
 import { useSelector } from 'react-redux';
 const SideBar = () => {
-    const {user}= useSelector((state)=>state.adminInfo)
+    const {user}= useSelector((state)=>state.userInfo)
   return (
     <div className=' sidebar p-2'>
         <div className="top mt-5"> LM-Admin</div>

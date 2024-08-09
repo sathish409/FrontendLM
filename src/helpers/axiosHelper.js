@@ -4,6 +4,9 @@ const rootEP= process.env.REACT_APP_ROOTAPI
 
 const userEP= rootEP + "/users";
 const bookEP= rootEP + "/books";
+const burrowEP= rootEP + "/burrow";
+
+
 
 
 const getAccessJWT= ()=>{
@@ -85,6 +88,14 @@ export const getUser= async ()=>{
      }) 
  }
 
+ export const getAllUsers= async ()=>{
+    return axiosProcessor({
+         method: 'get',
+         url: userEP + "/all-users",
+         isPrivate:true,
+     }) 
+ }
+
  export const getNewAccessJWT= async ()=>{
     return axiosProcessor({
          method: 'get',
@@ -107,10 +118,43 @@ export const getUser= async ()=>{
      })
  }
 
- export const getBooks= async (data)=>{
+ export const getBooks= async (_id)=>{
     return axiosProcessor({
          method: 'get',
+         url: _id ? bookEP + "/" + _id : bookEP,
+         isPrivate:true,
+       
+     })
+ }
+
+ export const updateBook= async (data)=>{
+    return axiosProcessor({
+         method: 'put',
          url: bookEP,
+         data,
+         isPrivate:true,
+     
+       
+     })
+ }
+
+ export const deleteBook= async (_id)=>{
+    return axiosProcessor({
+         method: 'delete',
+         url: bookEP + "/" + _id,
+         isPrivate:true,
+     
+       
+     })
+ }
+
+
+ //==burrow book
+
+ export const postBurrow= async (data)=>{
+    return axiosProcessor({
+         method: 'post',
+         url: burrowEP,
          data,
          isPrivate:true,
        

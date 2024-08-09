@@ -1,6 +1,9 @@
 .main{
     min-height: 80vh;
 }
+a{
+    text-decoration: none !important;
+}
 
 .form-center{
     width: 450px;
@@ -18,4 +21,48 @@
 
    line-height: 3rem;
    font-weight: bold;
+}
+
+
+.carousel {
+    height: 60vh;
+
+}
+.carousel img{
+    height: 60vh; 
+    object-fit: cover;
+}
+.card{
+    max-width: 36rem;
+}
+
+.avatar{
+    background: red;
+    width: 80px;
+    height: 80px;
+border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2.3rem;
+    font-weight: bolder;
+    color: white;
+
+
+
+}
+
+.conatiner{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 3rem;
+}
+.button-group{
+    position: relative;
+    top: -1.5rem;
+}
+.review{
+    width: calc(100% - 100px);
 }

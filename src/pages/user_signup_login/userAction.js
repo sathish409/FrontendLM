@@ -1,6 +1,6 @@
 
-import { getNewAccessJWT, getUser, signOutUser } from "../../helpers/axiosHelper"
-import { setUser } from "./userSlice"
+import { getAllUsers, getNewAccessJWT, getUser, signOutUser } from "../../helpers/axiosHelper"
+import { setAllUsers, setUser } from "./userSlice"
 
 
 export const getUserAction=()=>async(dispatch)=>{
@@ -11,6 +11,14 @@ if(status==="success"){
 
 }
 }
+export const getAllUsersAction=()=>async(dispatch)=>{
+    const {status, users} = await getAllUsers()
+    if(status ==="success"){
+        //send user to redux store
+        dispatch(setAllUsers(users));
+    
+    }
+    }
 
 
 

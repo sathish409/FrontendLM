@@ -18,7 +18,7 @@ const LogIn = () => {
  console.log(location)
  const fromLocation= location?.state?.from?.location?.pathname || "/dashboard"
 
-const {user}= useSelector((state)=> state.adminInfo)
+const {user}= useSelector((state)=> state.userInfo)
 
   useEffect(()=>{
     //redirect to dashboard

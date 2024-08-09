@@ -85,8 +85,8 @@ console.log(form)
    },
 
   ]
-  const {user}= useSelector((state)=>state.adminInfo)
-  return user?.role === "admin" ?  (
+  const {user}= useSelector((state)=>state.userInfo)
+  return user?._id === "admin" ?  (
     <div className="bg-dark text-light p-3">
     <Form onSubmit={handleOnSubmit} className='form-center border shadow-lg p-2 mt-5'>
       <h2>Creating New Admin</h2>
